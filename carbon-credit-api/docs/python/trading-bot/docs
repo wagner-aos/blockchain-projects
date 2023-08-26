@@ -1,0 +1,118 @@
+//https://medium.com/@rjaloudi/building-a-sandwich-trading-bot-with-python-for-uniswap-and-metamask-a-step-by-step-tutorial-f45bab1de592
+
+Building a Sandwich Trading Bot with Python for Uniswap and MetaMask: A Step-by-Step Tutorial — Rami Jaloudi
+
+Trading bots have become increasingly popular in the cryptocurrency world. In this tutorial, we will walk you through the process of building a sandwich trading bot using the Uniswap decentralized exchange protocol and interacting with it using the MetaMask wallet. This bot aims to capitalize on price swings between two assets by placing buy and sell orders at predefined price levels. By following this step-by-step guide, you’ll learn how to integrate Uniswap, fetch real-time market prices, execute trades, and ensure secure interactions using MetaMask.
+
+Prerequisites:
+
+Basic understanding of Python programming language.
+Familiarity with the Uniswap protocol and MetaMask wallet.
+Basic knowledge of decentralized exchanges and trading strategies.
+Step 1: Setting Up the Development Environment
+
+Install Python and necessary libraries: Web3.py, requests, eth-account.
+Create a new Python script for our sandwich trading bot.
+Step 2: Initialize the Web3 Provider and Load the Wallet
+
+Obtain an Infura project ID and set it as the provider URL.
+Initialize Web3 with the provider URL and enable the geth_poa_middleware.
+Load the MetaMask wallet by providing the private key and passphrase.
+Step 3: Configure the Uniswap Contract Addresses
+
+Obtain the router contract address from the Uniswap documentation.
+Set the addresses of the tokens you want to trade.
+Step 4: Fetch Real-Time Token Prices
+
+Use the CoinGecko API to fetch the market prices of the tokens.
+Implement a function to retrieve the token prices using the API.
+Step 5: Execute the Sandwich Trading Strategy
+
+Calculate the target buy and sell prices based on the price differences.
+Simulate checking the market prices or implement your own logic.
+Execute the buy trade if the conditions are met.
+Execute the sell trade if the conditions are met.
+Step 6: Interact with Uniswap and Execute Trades
+
+Approve the token transfer using the router contract’s approve function.
+Build the transaction to swap tokens using the swapExactTokensForTokens function.
+Sign and send the transaction to the Ethereum network.
+Wait for the transaction receipt and handle any errors.
+Step 7: Testing and Running the Sandwich Trading Bot
+
+Set up a testing environment or use a sandbox on the Ethereum network.
+Modify the code to suit your specific trading requirements.
+Run the sandwich trading bot script and observe the execution of trades.
+To make the sandwich trading bot work with Uniswap and MetaMask, you’ll need to integrate the Uniswap protocol and interact with it using the MetaMask wallet. 
+Here’s an version of the sandwich trading bot that incorporates these components:
+
+CODE...
+
+In this code, we have added the ability to fetch token prices using the CoinGecko API and execute trades on Uniswap using the MetaMask wallet. You’ll need to replace 'YOUR_INFURA_PROJECT_ID', 'YOUR_WALLET_PRIVATE_KEY', 'YOUR_WALLET_PASSPHRASE', '0xTOKEN_1_ADDRESS', '0xTOKEN_2_ADDRESS', and 'UNISWAP_ROUTER_ABI' with your own values.
+
+Make sure you have the necessary dependencies installed, including the Web3.py, requests, and eth-account libraries. Additionally, replace the get_token_price() function with your own logic to fetch real-time market prices.
+
+Please note that trading bots involve risks, and it’s crucial to thoroughly test and validate your strategy before deploying it with real funds. Ensure that you understand the risks associated with trading strategies, smart contract interactions, and the security considerations of using a wallet like MetaMask.
+
+Remember to handle gas fees appropriately and conduct thorough research or consult with a financial advisor to make informed trading decisions.
+
+Conclusion: In this tutorial, we have covered the step-by-step process of building a sandwich trading bot that works with the Uniswap decentralized exchange protocol and MetaMask wallet. We explored key concepts such as initializing the development environment, fetching real-time token prices, executing trades on Uniswap, and ensuring secure interactions using MetaMask. By following this guide, you can gain hands-on experience in developing and deploying your own trading bot, allowing you to explore and implement various trading strategies within the decentralized finance ecosystem.
+
+Remember, trading bots come with inherent risks, and it’s crucial to thoroughly test and validate your strategy before deploying it with real funds. Additionally, stay informed about market trends, risk management techniques, and security considerations to make informed trading decisions. Happy bot building and happy trading!
+
+Below is a supplementary Arbitrage Cryptocurrency Trading Bot you can use on Uniswap and another DEX where there are price difference you can profit on:
+
+CODE:
+
+
+import requests
+import time
+
+class ArbitrageBot:
+    def __init__(self, exchange1_api_url, exchange2_api_url):
+        self.exchange1_api_url = exchange1_api_url
+        self.exchange2_api_url = exchange2_api_url
+
+    def fetch_price(self, exchange_api_url):
+        response = requests.get(exchange_api_url)
+        data = response.json()
+        return float(data["price"])
+
+    def execute_trade(self, exchange_api_url, trade_data):
+        response = requests.post(exchange_api_url, json=trade_data)
+        return response.json()
+
+    def find_arbitrage_opportunity(self):
+        price1 = self.fetch_price(self.exchange1_api_url)
+        price2 = self.fetch_price(self.exchange2_api_url)
+
+        # Calculate potential profit percentage
+        profit_percentage = (price2 - price1) / price1 * 100
+
+        if profit_percentage > 0:
+            # Perform arbitrage trade
+            trade_data = {
+                # Define trade parameters for buying on exchange 1 and selling on exchange 2
+            }
+            trade_result = self.execute_trade(self.exchange1_api_url, trade_data)
+            print("Arbitrage opportunity found:")
+            print(f"Buy on Exchange 1, Sell on Exchange 2")
+            print(f"Profit Percentage: {profit_percentage}%")
+            print(f"Trade Result: {trade_result}")
+        else:
+            print("No arbitrage opportunity found.")
+
+    def run(self, interval_seconds):
+        while True:
+            self.find_arbitrage_opportunity()
+            time.sleep(interval_seconds)
+
+# Example usage
+if __name__ == "__main__":
+    exchange1_api_url = "https://exchange1.com/api"
+    exchange2_api_url = "https://exchange2.com/api"
+
+    bot = ArbitrageBot(exchange1_api_url, exchange2_api_url)
+    bot.run(interval_seconds=10)
+
+
