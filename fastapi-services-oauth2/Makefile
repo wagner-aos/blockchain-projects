@@ -5,8 +5,10 @@ help:
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
+PYTHON_VERSION=3.11
+
 # API
-SERVER_HORT=127.0.0.0
+SERVER_HORT=localhost
 SERVER_PORT=8000
 API_USER_NAME=test_user
 API_USER_PASSWORD=password
@@ -20,11 +22,11 @@ DATABASE_PORT=5432
 
 # PYTHON
 install-python-linux:
-	sudo apt-get install python3.11
+	sudo apt-get install python${PYTHON_VERSION}
 	python --version
-	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 2
+	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${PYTHON_VERSION} 2
 	sudo update-alternatives --config python3
-	sudo apt-get install python3.11-venv
+	sudo apt-get install python${PYTHON_VERSION}-venv
 
 # Database
 start-docker-database:
@@ -43,13 +45,13 @@ install-depenpencies:
 
 clear-pip-depenpencies:
 	$(eval user_name := $(shell whoami))
-	rm -rf /home/${user_name}/.local/lib/python3.11/site-packages
+	rm -rf /home/${user_name}/.local/lib/python${PYTHON_VERSION}/site-packages
 	rm -rf ./venv
 	deactivate
 
 # Start API
 virtual-env:
-	python3.11 -m venv venv && source venv/bin/activate
+	python${PYTHON_VERSION} -m venv venv && source venv/bin/activate
 
 virtual-env-deactivate:
 	deactivate
