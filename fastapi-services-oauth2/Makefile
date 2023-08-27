@@ -61,3 +61,18 @@ swagger:
 api-get-token:
 	curl -X 'POST' 'http://${SERVER_HORT}:${SERVER_PORT}/token' \
 	-d 'username=test_user@myapi.com&password=password'
+#{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCB1c2VyIiwic3ViIjoidGVzdF91c2VyQG15YXBpLmNvbSIsImV4cGlyZXNfYXQiOiIyMDIzLTA4LTI3IDE2OjM5OjA5In0.bfaMjRJfjSLfb1g4UIJ2E0OQGRWOfrfagkMym5ngsfg","token_type":"bearer"}
+
+api-get-access-token:
+	$(eval ACCESS_TOKEN := $(shell curl -X 'POST' 'http://${SERVER_HORT}:${SERVER_PORT}/token' \
+	-d 'username=test_user@myapi.com&password=password' | jq .access_token | tr -d '"'))
+#echo ${ACCESS_TOKEN}
+
+api-get-movies: api-get-access-token
+	@curl -X 'GET' 'http://${SERVER_HORT}:${SERVER_PORT}/movies/new?year=1990&rating=6' \
+	-H 'Authorization: Bearer ${ACCESS_TOKEN}' | jq --color-output .
+
+#[{"movie_id":1,"title":"The Shawshank Redemption","released":1994,"rating":9.2},{"movie_id":3,"title":"The Dark Knight","released":2008,"rating":9.0}]%
+
+#curl -X 'POST' 'http://127.0.0.0:8000/token' -d 'username=test_user@myapi.com&password=password' \
+#| jq .access_token

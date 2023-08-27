@@ -24,4 +24,5 @@ INSERT INTO mydb.movies (movie_id, title, released, rating) VALUES (1, 'Velozes 
 INSERT INTO mydb.movies (movie_id, title, released, rating) VALUES (2, 'Indiana Jones', 2023, 8.0);
 INSERT INTO mydb.movies (movie_id, title, released, rating) VALUES (3, 'MI-6', 2023, 7.4);
 INSERT INTO mydb.movies (movie_id, title, released, rating) VALUES (4, 'O Protetor 3', 2023, 9.5);
+INSERT INTO mydb.movies (movie_id, title, released, rating) VALUES (5, 'The Shawshank Redemption', 1994, 9.2);
 
