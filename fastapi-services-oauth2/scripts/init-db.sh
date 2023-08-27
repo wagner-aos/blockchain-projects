@@ -1,0 +1,14 @@
+#!/bin/sh
+
+DATABASE_NAME=postgres
+DATABASE_USERNAME=postgres
+PGPASSWORD=h234siufyds43
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+SQL_FILE=./init-db.sql
+
+PGPASSWORD=$PGPASSWORD \
+psql -h $DATABASE_HOST -p $DATABASE_PORT -U $DATABASE_USERNAME -d $DATABASE_NAME -f $SQL_FILE
+
+# psql -h localhost -p 5432 -U postgres -d mydb
+
