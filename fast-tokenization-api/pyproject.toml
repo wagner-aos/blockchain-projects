@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "app"
-description = "FastAPI services with OAuth2"
+description = "Fast Tokenization API"
 readme = "README.md"
 authors = [
     {name = "Wagner AOS"},
@@ -43,8 +43,8 @@ test = [
 ]
 
 [project.urls]
-homepage = "https://wagner.aos.github.io/fastapi-oauth2-postgres/"
-repository = "https://github.com/wagner-aos/fastapi-services-oauth2"
+homepage = "https://wagner-aos.github.io/fast-tokenization-api/"
+repository = "https://github.com/wagner-aos/fast-tokenization-api"
 
 [project.scripts]
 myapi = "app.cli:main"
