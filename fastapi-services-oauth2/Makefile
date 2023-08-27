@@ -5,9 +5,13 @@ help:
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
+# API
 SERVER_HORT=127.0.0.0
 SERVER_PORT=8000
-
+API_USER_NAME=test_user
+API_USER_PASSWORD=password
+API_USER_EMAIL=test_user@myapi.com
+# Database
 DATABASE_NAME=postgres
 DATABASE_USERNAME=postgres
 PGPASSWORD=h234siufyds43
@@ -65,12 +69,16 @@ api-get-token:
 
 api-get-access-token:
 	$(eval ACCESS_TOKEN := $(shell curl -X 'POST' 'http://${SERVER_HORT}:${SERVER_PORT}/token' \
-	-d 'username=test_user@myapi.com&password=password' | jq .access_token | tr -d '"'))
-#echo ${ACCESS_TOKEN}
+	-d 'username=${API_USER_EMAIL}&password=${API_USER_PASSWORD}' | jq .access_token | tr -d '"'))
 
 api-get-movies: api-get-access-token
 	@curl -X 'GET' 'http://${SERVER_HORT}:${SERVER_PORT}/movies/new?year=1990&rating=6' \
 	-H 'Authorization: Bearer ${ACCESS_TOKEN}' | jq --color-output .
+
+api-get-movie-byid: api-get-access-token # CALL: make api-get-movie-byid movieid=1
+	@curl -X 'GET' 'http://${SERVER_HORT}:${SERVER_PORT}/movies/?movie_id=$(movieid)' \
+	-H 'Authorization: Bearer ${ACCESS_TOKEN}' | jq --color-output .	
+	@if [ -z "$(movieid)" ]; then echo "Example: make api-get-movie-byid movieid=1"; fi
 
 #[{"movie_id":1,"title":"The Shawshank Redemption","released":1994,"rating":9.2},{"movie_id":3,"title":"The Dark Knight","released":2008,"rating":9.0}]%
 
