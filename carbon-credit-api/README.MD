@@ -15,3 +15,5 @@ https://medium.com/geekculture/interacting-with-etherium-network-in-python-using
 
 https://www.youtube.com/watch?v=6ZMt4WwDI0E
 
+https://medium.com/block-magnates/decoding-the-data-field-in-ethereum-transactions-with-code-snippets-7142bc6751ed
+

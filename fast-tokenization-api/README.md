@@ -31,3 +31,7 @@ $ MYAPI_DATABASE_DNS=postgresql://... uvicorn app.main:app
 ## License
 
 MIT License (see [LICENSE](LICENSE)).
+
+### Links
+
+https://www.infomoney.com.br/mercados/o-que-e-a-hyperledger-besu-a-tecnologia-escolhida-para-o-piloto-do-real-digital/

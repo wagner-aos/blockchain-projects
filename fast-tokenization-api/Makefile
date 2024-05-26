@@ -52,6 +52,10 @@ clear-pip-depenpencies:
 # Start API
 virtual-env:
 	python${PYTHON_VERSION} -m venv venv && source venv/bin/activate
+# ( \
+# 	python${PYTHON_VERSION} -m venv venv;\
+# 	source venv/bin/activate;\
+# )	
 
 virtual-env-deactivate:
 	deactivate
