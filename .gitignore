@@ -135,4 +135,4 @@ dmypy.json
 /ethereum-solidity-devguide-course/inbox/.env
 /ethereum-solidity-devguide-course/inbox/test.env
 /ethereum-solidity-devguide-course/inbox/setenv.sh
-/ethereum-solidity-devguide-course/inbox/node_modules/
+/ethereum-solidity-devguide-course/inbox/node_modules
