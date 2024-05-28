@@ -129,3 +129,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+/ethereum-solidity-devguide-course/COMMANDS.md
+/ethereum-solidity-devguide-course/inbox/.env
+/ethereum-solidity-devguide-course/inbox/test.env
+/ethereum-solidity-devguide-course/inbox/setenv.sh
+/ethereum-solidity-devguide-course/inbox/node_modules/

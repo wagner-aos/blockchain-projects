@@ -5,6 +5,11 @@ create-inbox-project:
 	mkdir -p inbox
 	cd inbox && npm init
 
+install-dependencies:
+	cd inbox && \
+	npm install 
+# dotenv ether alchemy-sdk
+
 install-inbox-solidity-compiler:
 	cd inbox && \
 	npm install solc@0.4.26
@@ -53,5 +58,13 @@ test-inbox:
 	cd inbox && \
 	npm run test 
 
+# =======================================
+# Interacting with wallet
+
+install-inbox-wallet:
+	cd inbox && \
+	npm install @truffle/hdwallet-provider
 
 deploy-inbox:
+	cd inbox && \
+	node deploy.js 
