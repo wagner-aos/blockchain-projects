@@ -1,70 +1,80 @@
 
 
+project_folder=examples/lottery #inbox
+contract_name=Lottery #Inbox
 
-create-inbox-project:
-	mkdir -p inbox
-	cd inbox && npm init
+create-project:
+	mkdir -p ${project_folder}
+	cd ${project_folder} && npm init
 
 install-dependencies:
-	cd inbox && \
-	npm install 
+	make install-basic-dependencies
+	make install-solidity-compiler
+	make install-test-dependencies
+# cd ${project_folder} && \
+# npm install 
 # dotenv ether alchemy-sdk
 
-install-inbox-solidity-compiler:
-	cd inbox && \
+install-basic-dependencies:
+	cd ${project_folder} && \
+	npm install alchemy-sdk dotenv
+
+install-solidity-compiler:
+	cd ${project_folder} && \
 	npm install solc@0.4.26
 
-create-inbox-initial-folders-and-files:
-	cd inbox && \
+create-initial-folders-and-files:
+	cd ${project_folder} && \
 	mkdir -p contracts && \
 	mkdir -p test
 	
-create-inbox-contract-file:
-# touch contracts/Inbox.sol
+create-contract-file:
+	cd ${project_folder} && \
+	touch contracts/${contract_name}.sol
 
-create-inbox-compile-file:
-	cd inbox && \
+create-compile-file:
+	cd ${project_folder} && \
 	rm -rf compile.js && \
 	touch compile.js && \
 	echo "const path = require('path');" >> compile.js && \
 	echo "const fs = require('fs');" >> compile.js && \
 	echo "const solc = require('solc');" >> compile.js && \
 	echo "" >> compile.js && \
-	echo "const inboxPath = path.resolve(__dirname, 'contracts', 'Inbox.sol');" >> compile.js && \
-	echo "const source = fs.readFileSync(inboxPath, 'utf8');" >> compile.js && \
+	echo "const contractPath = path.resolve(__dirname, 'contracts', '${contract_name}.sol');" >> compile.js && \
+	echo "const source = fs.readFileSync(contractPath, 'utf8');" >> compile.js && \
 	echo "" >> compile.js && \
-	echo "// console.log(solc.compile(source,1).contracts[':Inbox']);" >> compile.js && \
-	echo "module.exports = solc.compile(source,1).contracts[':Inbox'];" >> compile.js
+	echo "// console.log(solc.compile(source,1).contracts[':${contract_name}']);" >> compile.js && \
+	echo "module.exports = solc.compile(source,1).contracts[':${contract_name}'];" >> compile.js
 	
 
-compile-inbox:
-	node --trace-warnings inbox/compile.js
+compile-contract:
+	node --trace-warnings ${project_folder}/compile.js
 
-install-inbox-test-dependencies:
-	cd inbox && \
+install-test-dependencies:
+	cd ${project_folder} && \
 	npm install mocha ganache web3
 
-# create-inbox-test-file:
-# 	cd inbox/tests && \
-# 	rm -rf inbox.test.js && \
-# 	touch inbox.test.js && \
-# 	echo "const Web3 = require('web3');" >> inbox.test.js && \
-# 	echo "const assert = require('assert');" >> inbox.test.js && \
-# 	echo "const ganache = require('ganache');" >> inbox.test.js && \
+# create-test-file:
+# 	cd ${project_folder}/tests && \
+# 	rm -rf ${project_folder}.test.js && \
+# 	touch ${project_folder}.test.js && \
+# 	echo "const Web3 = require('web3');" >> ${project_folder}.test.js && \
+# 	echo "const assert = require('assert');" >> ${project_folder}.test.js && \
+# 	echo "const ganache = require('ganache');" >> inb${project_folder}ox.test.js && \
 # 	echo "" >> compile.js && \
-# 	echo "const web3 = new Web3(ganache.provider());" >> inbox.test.js
+# 	echo "const web3 = new Web3(ganache.provider());" >> ${project_folder}.test.js
 
-test-inbox:
-	cd inbox && \
+test-contract:
+	cd ${project_folder} && \
 	npm run test 
 
 # =======================================
 # Interacting with wallet
 
-install-inbox-wallet:
-	cd inbox && \
+instal-wallet:
+	cd ${project_folder} && \
 	npm install @truffle/hdwallet-provider
 
-deploy-inbox:
-	cd inbox && \
+deploy-contract:
+	cd ${project_folder} && \
 	node deploy.js 

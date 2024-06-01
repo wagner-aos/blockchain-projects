@@ -132,7 +132,8 @@ dmypy.json
 
 
 /ethereum-solidity-devguide-course/COMMANDS.md
-/ethereum-solidity-devguide-course/inbox/.env
-/ethereum-solidity-devguide-course/inbox/test.env
-/ethereum-solidity-devguide-course/inbox/setenv.sh
-/ethereum-solidity-devguide-course/inbox/node_modules
+/ethereum-solidity-devguide-course/examples/**/.env
+/ethereum-solidity-devguide-course/examples/**/draft
+/ethereum-solidity-devguide-course/examples/**/test.env
+/ethereum-solidity-devguide-course/examples/**/setenv.sh
+/ethereum-solidity-devguide-course/examples/**/node_modules
